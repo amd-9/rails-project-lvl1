@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SimpleTag
   attr_reader :tag_name, :attributes
 
@@ -15,8 +17,9 @@ class SimpleTag
   end
 
   def attributes_string
-    return '' if @attributes.empty?
-    
-    " " + @attributes.keys.map{ |key| "#{key}=\"#{@attributes[key]}\"" }.join(" ")
+    return "" if @attributes.empty?
+
+    tag_attributes_string = @attributes.keys.map { |key| "#{key}=\"#{@attributes[key]}\"" }.join(" ")
+    " #{tag_attributes_string}"
   end
 end

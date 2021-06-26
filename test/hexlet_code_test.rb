@@ -9,7 +9,7 @@ class HexletCodeTest < Minitest::Test
 
   def test_build_simple_tag
     tag = HexletCode::Tag.build("br")
-    assert_equal tag, '<br>'
+    assert_equal tag, "<br>"
   end
 
   def test_build_simple_tag_with_attributes
@@ -18,13 +18,13 @@ class HexletCodeTest < Minitest::Test
   end
 
   def test_build_pair_tag
-    tag = HexletCode::Tag.build("label") { 'Email' }
+    tag = HexletCode::Tag.build("label") { "Email" }
     expected = "<label>Email</label>"
     assert_equal tag, expected
   end
 
   def test_build_pair_tag_with_attributes
-    tag = HexletCode::Tag.build('label', for: 'email') { 'Email' }
+    tag = HexletCode::Tag.build("label", for: "email") { "Email" }
     expected = "<label for=\"email\">Email</label>"
     assert_equal tag, expected
   end
