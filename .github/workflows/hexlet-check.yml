@@ -25,3 +25,9 @@ jobs:
         uses: hexlet/project-action@release
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
+
+      - name: Run the default task
+        run: |
+          gem install bundler -v 2.2.15
+          bundle install
+          bundle exec rake
