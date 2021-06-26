@@ -26,8 +26,6 @@ jobs:
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
 
-      - name: Run the default task
+      - name: Run lint check
         run: |
-          gem install bundler -v 2.2.15
-          bundle install
-          bundle exec rake
+          rake test
