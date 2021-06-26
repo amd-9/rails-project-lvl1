@@ -1,31 +1,13 @@
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.0.1
-
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
+  Exclude:
+    - 'bin/**'
+    - '*.gemspec'
+  
 Style/Documentation:
-  Enabled: false  
-
-Layout/LineLength:
-  Max: 120
-
-Layout/EndOfLine:
   Enabled: false
-
-Lint/ScriptPermission:
-  Enabled: false
-
-Style/RedundantPercentQ:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
+  
+Gemspec/RequiredRubyVersion:
   Enabled: false
 
 Metrics/MethodLength:
@@ -35,4 +17,7 @@ Naming/MethodParameterName:
   Enabled: false
 
 Metrics/AbcSize:
+  Enabled: false
+
+Style/RedundantPercentQ:
   Enabled: false

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "hexlet_code/version"
-require_relative "simple_tag"
-require_relative "pair_tag"
-require_relative "form"
+require_relative 'hexlet_code/version'
+require_relative 'simple_tag'
+require_relative 'pair_tag'
+require_relative 'form'
 
 module HexletCode
   class Error < StandardError; end
@@ -16,9 +16,9 @@ module HexletCode
     end
   end
 
-  def self.form_for(entity, url: "#", &block)
+  def self.form_for(entity, url: '#', &block)
     form = Form.new(entity, url)
-    return "" unless block_given?
+    return '' unless block_given?
 
     block.call(form)
     form.to_s

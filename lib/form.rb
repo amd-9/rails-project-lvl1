@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "simple_tag"
-require_relative "pair_tag"
+require_relative 'simple_tag'
+require_relative 'pair_tag'
 
 class Form
   attr_reader :url, :entity, :inputs
@@ -14,21 +14,21 @@ class Form
 
   def generate_input(name, value, type, input_options = {})
     tag_type_map = {
-      default: -> { SimpleTag.new("input", type: "text", value: value, name: name, **input_options) },
-      label: -> { PairTag.new("label", { for: name }, content: name.capitalize) },
-      text: -> { PairTag.new("textarea", { cols: 20, rows: 40, name: name, **input_options }, content: value) },
-      submit: -> { SimpleTag.new("input", type: "submit", value: value, **input_options) },
+      default: -> { SimpleTag.new('input', type: 'text', value: value, name: name, **input_options) },
+      label: -> { PairTag.new('label', { for: name }, content: name.capitalize) },
+      text: -> { PairTag.new('textarea', { cols: 20, rows: 40, name: name, **input_options }, content: value) },
+      submit: -> { SimpleTag.new('input', type: 'submit', value: value, **input_options) },
       select: lambda do
         option_collection = input_options[:collection]
         select_options = option_collection.map do |option|
           option_tag = if value == option
-                         PairTag.new("option", { value: option, selected: nil }, content: option)
+                         PairTag.new('option', { value: option, selected: nil }, content: option)
                        else
-                         PairTag.new("option", { value: option }, content: option)
+                         PairTag.new('option', { value: option }, content: option)
                        end
           option_tag.to_s
         end
-        PairTag.new("select", { name: name }, content: "\n#{select_options.join("\n")}\n")
+        PairTag.new('select', { name: name }, content: "\n#{select_options.join("\n")}\n")
       end
     }
 
@@ -37,13 +37,13 @@ class Form
   end
 
   def input(property, as: :default, **kwargs)
-    input_with_labels_map = %i(default text)
+    input_with_labels_map = %i[default text]
     @inputs << generate_input(property, nil, :label) if input_with_labels_map.include? as
     @inputs << generate_input(property, @entity[property], as, kwargs)
   end
 
-  def submit(button_name = "Save")
-    @inputs << generate_input("commit", button_name, :submit)
+  def submit(button_name = 'Save')
+    @inputs << generate_input('commit', button_name, :submit)
   end
 
   def to_s

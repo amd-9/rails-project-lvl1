@@ -17,9 +17,9 @@ class SimpleTag
   end
 
   def attributes_string
-    return "" if @attributes.empty?
+    return '' if @attributes.empty?
 
-    attrs = @attributes.keys.map { |key| @attributes[key].nil? ? key : "#{key}=\"#{@attributes[key]}\"" }.join(" ")
+    attrs = @attributes.keys.map { |key| @attributes[key].nil? ? key : "#{key}=\"#{@attributes[key]}\"" }.join(' ')
     " #{attrs}"
   end
 end
