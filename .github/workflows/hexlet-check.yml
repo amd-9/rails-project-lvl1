@@ -30,9 +30,19 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.1
-      - name: Install RuboCop gem
+      - name: Cache gems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rubocop-
+      - name: Install gems
         run: |
-          gem install rubocop
+          bundle config path vendor/bundle
+          bundle config set without 'default doc job cable storage ujs test db'
+          bundle install --jobs 4 --retry 3
       - name: Run RuboCop
         run: |
+          gem install rubocop
           bundle exec rubocop --parallel
