@@ -18,32 +18,33 @@ class Form
       label: -> { PairTag.new('label', { for: name }, content: name.capitalize) },
       text: -> { PairTag.new('textarea', { cols: 20, rows: 40, name: name, **input_options }, content: value) },
       submit: -> { SimpleTag.new('input', type: 'submit', value: value, **input_options) },
-      select: lambda do
-        option_collection = input_options[:collection]
-        select_options = option_collection.map do |option|
-          option_tag = if value == option
-                         PairTag.new('option', { value: option, selected: nil }, content: option)
-                       else
-                         PairTag.new('option', { value: option }, content: option)
-                       end
-          option_tag.to_s
-        end
-        PairTag.new('select', { name: name }, content: "\n#{select_options.join("\n")}\n")
-      end
+      select: -> { PairTag.new('select', { name: name }, content: generate_options(value, input_options[:collection])) }
     }
 
-    input_tag = tag_type_map[type].call
-    input_tag.to_s
+    tag_type_map[type].call.to_s
   end
 
-  def input(property, as: :default, **kwargs)
-    input_with_labels_map = %i[default text]
-    @inputs << generate_input(property, nil, :label) if input_with_labels_map.include? as
-    @inputs << generate_input(property, @entity[property], as, kwargs)
+  def generate_options(selected_value, options = [])
+    selected_options = options.map do |option|
+      option_props = selected_value == option ? { selected: nil } : {}
+      PairTag.new('option', { value: option, **option_props }, content: option).to_s
+    end
+    "\n#{selected_options.join("\n")}\n"
+  end
+
+  def generate_label(property)
+    @inputs << generate_input(property, nil, :label)
+  end
+
+  def input(property, **kwargs)
+    as = kwargs[:as] || :default
+
+    generate_label property if %i[default text].include? as
+    @inputs << generate_input(property, @entity[property], as, kwargs.except(:as))
   end
 
   def submit(button_name = 'Save')
-    @inputs << generate_input('commit', button_name, :submit)
+    @inputs << generate_input('Commit', button_name, :submit)
   end
 
   def to_s

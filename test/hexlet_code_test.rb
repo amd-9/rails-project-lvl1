@@ -32,7 +32,7 @@ class HexletCodeTest < Minitest::Test
 
   def test_form_for
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
-    expected = %q(<form action="#" method="post">
+    expected = %(<form action="#" method="post">
 <label for="name">Name</label>
 <input type="text" value="rob" name="name">
 <label for="job">Job</label>
@@ -52,7 +52,7 @@ class HexletCodeTest < Minitest::Test
 
   def test_form_for_with_url
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
-    expected = %q(<form action="/users" method="post">
+    expected = %(<form action="/users" method="post">
 <label for="name">Name</label>
 <input type="text" value="rob" name="name">
 <label for="job">Job</label>
@@ -73,7 +73,7 @@ class HexletCodeTest < Minitest::Test
 
   def test_form_for_with_submit_button
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
-    expected = %q(<form action="/users" method="post">
+    expected = %(<form action="/users" method="post">
 <label for="name">Name</label>
 <input type="text" value="rob" name="name">
 <label for="job">Job</label>
