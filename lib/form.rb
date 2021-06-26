@@ -16,7 +16,7 @@ class Form
     tag_type_map = {
       default: -> { SimpleTag.new("input", type: "text", value: value, name: name) },
       label: -> { PairTag.new("label", { for: name }, content: name.capitalize) },
-      text: -> { PairTag.new("textarea", { cols: 20, rows: 40, name: name }, content: value) },
+      text: -> { PairTag.new("textarea", { cols: input_options[:cols] || 20, rows: input_options[:rows] || 40, name: name }, content: value) },
       submit: -> { SimpleTag.new("input", type: "sumbit", value: value, name: name) },
       select: lambda do
         option_collection = input_options[:collection]
@@ -37,7 +37,7 @@ class Form
   end
 
   def input(property, as: :default, **kwargs)
-    input_with_labels_map = %i(default text)
+    input_with_labels_map = %i(default text) 
     @inputs << generate_input(property, nil, :label) if input_with_labels_map.include? as
     @inputs << generate_input(property, @entity[property], as, kwargs)
   end
