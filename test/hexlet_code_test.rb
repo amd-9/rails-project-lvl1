@@ -82,7 +82,7 @@ class HexletCodeTest < Minitest::Test
 <option value="m" selected>m</option>
 <option value="f">f</option>
 </select>
-<input type="sumbit" value="Save" name="commit">
+<input type="sumbit" value="Save">
 </form>)
 
     form = HexletCode.form_for user, url: "/users" do |f|

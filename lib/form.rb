@@ -17,7 +17,7 @@ class Form
       default: -> { SimpleTag.new("input", type: "text", value: value, name: name) },
       label: -> { PairTag.new("label", { for: name }, content: name.capitalize) },
       text: -> { PairTag.new("textarea", { cols: input_options[:cols] || 20, rows: input_options[:rows] || 40, name: name }, content: value) },
-      submit: -> { SimpleTag.new("input", type: "sumbit", value: value, name: name) },
+      submit: -> { SimpleTag.new("input", type: "sumbit", value: value) },
       select: lambda do
         option_collection = input_options[:collection]
         select_options = option_collection.map do |option|
