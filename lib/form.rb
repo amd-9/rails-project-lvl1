@@ -14,7 +14,7 @@ class Form
 
   def generate_input(name, value, type, input_options = nil)
     tag_type_map = {
-      default: -> { SimpleTag.new("input", type: "text", value: value, name: name) },
+      default: -> { SimpleTag.new("input", type: "text", value: value, name: name, input_options) },
       label: -> { PairTag.new("label", { for: name }, content: name.capitalize) },
       text: -> { PairTag.new("textarea", { cols: input_options[:cols] || 20, rows: input_options[:rows] || 40, name: name }, content: value) },
       submit: -> { SimpleTag.new("input", type: "sumbit", value: value) },
