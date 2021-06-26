@@ -26,10 +26,10 @@ jobs:
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
 
-      - name: Set up Ruby 3.1
+      - name: Set up Ruby 3.0.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: 3.0.1
       - name: Cache gems
         uses: actions/cache@v1
         with:
