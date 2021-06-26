@@ -21,3 +21,18 @@ Layout/EndOfLine:
 
 Lint/ScriptPermission:
   Enabled: false
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
