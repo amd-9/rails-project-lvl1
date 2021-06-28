@@ -20,10 +20,7 @@ class HtmlTag
   def attributes_string
     return '' if @attributes.empty?
 
-    # pp "Processing attribues for tag: #{@tag_name}, attributes are: #{@attributes}"
-
     attrs = @attributes.keys.map { |key| @attributes[key].nil? ? key : "#{key}=\"#{@attributes[key]}\"" }.join(' ')
-    # pp "attrs are #{attrs}"
     " #{attrs}"
   end
 end
