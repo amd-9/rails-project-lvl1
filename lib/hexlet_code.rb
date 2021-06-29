@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'hexlet_code/version'
-require_relative 'form'
+require 'form'
 
 module HexletCode
   class Error < StandardError; end
   # Your code goes here...
 
+  autoload(:VERSION, 'hexlet_code/version')
   autoload(:Tag, 'tag')
 
   def self.form_for(entity, url: '#', &block)
