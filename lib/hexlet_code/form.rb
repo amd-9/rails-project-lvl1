@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative './tags/input'
-require_relative './tags/text_area'
-require_relative './tags/select'
-
 module HexletCode
   class Form
     attr_reader :url, :entity, :inputs
+
+    autoload(:Input, 'hexlet_code/tags/input')
+    autoload(:TextArea, 'hexlet_code/tags/text_area')
+    autoload(:Select, 'hexlet_code/tags/select')
 
     def initialize(entity, url)
       @url = url

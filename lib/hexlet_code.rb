@@ -5,8 +5,8 @@ module HexletCode
   # Your code goes here...
 
   autoload(:VERSION, 'hexlet_code/version')
-  autoload(:Tag, 'tag')
-  autoload(:Form, 'form')
+  autoload(:Tag, 'hexlet_code/tag')
+  autoload(:Form, 'hexlet_code/form')
 
   def self.form_for(entity, url: '#', &block)
     form = Form.new(entity, url)
