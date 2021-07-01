@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class Form
-    attr_reader :url, :entity, :inputs
-
+  module Tags
     autoload(:Input, 'hexlet_code/tags/input')
     autoload(:TextArea, 'hexlet_code/tags/text_area')
     autoload(:Select, 'hexlet_code/tags/select')
+  end
+
+  class Form
+    attr_reader :url, :entity, :inputs
 
     def initialize(entity, url)
       @url = url
@@ -16,10 +18,10 @@ module HexletCode
 
     def generate_input(name, value, type, input_options = {})
       tag_type_map = {
-        default: -> { Input.new('text', { value: value, name: name, **input_options }) },
-        text: -> { TextArea.new({ name: name, **input_options }, value) },
-        submit: -> { Input.new('submit', { value: value, name: name, **input_options }) },
-        select: -> { Select.new({ name: name, value: value, **input_options }) }
+        default: -> { Tags::Input.new('text', { value: value, name: name, **input_options }) },
+        text: -> {  Tags::TextArea.new({ name: name, **input_options }, value) },
+        submit: -> { Tags::Input.new('submit', { value: value, name: name, **input_options }) },
+        select: -> { Tags::Select.new({ name: name, value: value, **input_options }) }
       }
 
       tag_type_map[type].call.to_s
