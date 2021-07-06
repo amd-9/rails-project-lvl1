@@ -7,7 +7,7 @@ module HexletCode
     def self.build(tag_name, **kwargs, &block)
       content = block_given? ? block.call : nil
       tag = Tag.new(tag_name, kwargs) { content }
-      tag.to_s
+      tag.build
     end
 
     def initialize(tag_name, attributes = {}, &block)
@@ -16,13 +16,11 @@ module HexletCode
       @content = block_given? ? block.call : nil
     end
 
-    def build_tag_string
+    def build
       return "<#{@tag_name}#{attributes_string}>" if content.nil?
 
       "<#{@tag_name}#{attributes_string}>#{@content}</#{tag_name}>"
     end
-
-    alias to_s build_tag_string
 
     def attributes_string
       return '' if @attributes.empty?

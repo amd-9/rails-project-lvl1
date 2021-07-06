@@ -24,7 +24,7 @@ module HexletCode
         select: -> { Tags::Select.new({ name: name, value: value, **input_options }) }
       }
 
-      tag_type_map[type].call.to_s
+      tag_type_map[type].call.build
     end
 
     def input(property, **kwargs)
@@ -37,9 +37,8 @@ module HexletCode
       @inputs << generate_input('Commit', button_name, :submit)
     end
 
-    def to_s
-      inputs_string = @inputs.map(&:to_s).join("\n")
-      "<form action=\"#{@url}\" method=\"post\">\n#{inputs_string}\n</form>"
+    def build
+      "<form action=\"#{@url}\" method=\"post\">\n#{@inputs.join("\n")}\n</form>"
     end
   end
 end

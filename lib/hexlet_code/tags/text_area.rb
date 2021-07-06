@@ -13,13 +13,13 @@ module HexletCode
         @content = content
       end
 
-      def to_s
+      def build
         text_area_attributes = { cols: 20, rows: 40, **@attributes }
         text_area_tag = HexletCode::Tag.new('textarea', text_area_attributes) { @content }
 
         label_attributes = { for: @name }
         label_tag = HexletCode::Tag.new('label', label_attributes) { @name.capitalize }
-        "#{label_tag}\n#{text_area_tag}"
+        "#{label_tag.build}\n#{text_area_tag.build}"
       end
     end
   end

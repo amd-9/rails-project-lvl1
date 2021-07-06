@@ -13,16 +13,16 @@ module HexletCode
         @attributes = attributes
       end
 
-      def to_s
+      def build
         input_attributes = { type: @type, **@attributes }
         input_tag = HexletCode::Tag.new('input', input_attributes)
 
         if type == 'submit'
-          input_tag.to_s
+          input_tag.build
         else
           label_attributes = { for: @name }
           label_tag = HexletCode::Tag.new('label', label_attributes) { @name.capitalize }
-          "#{label_tag}\n#{input_tag}"
+          "#{label_tag.build}\n#{input_tag.build}"
         end
       end
     end

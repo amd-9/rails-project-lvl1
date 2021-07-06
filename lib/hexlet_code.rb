@@ -13,6 +13,6 @@ module HexletCode
     return '' unless block_given?
 
     block.call(form)
-    form.to_s
+    form.build
   end
 end

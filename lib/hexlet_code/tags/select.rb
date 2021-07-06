@@ -13,15 +13,15 @@ module HexletCode
         @options = attributes[:collection]
       end
 
-      def to_s
+      def build
         option_tags = @options.map do |option|
           option_attributes = @attributes[:value] == option ? { selected: nil } : {}
           option_tag = HexletCode::Tag.new('option', { value: option, **option_attributes }) { option }
-          option_tag.to_s
+          option_tag.build
         end
 
         select_tag = HexletCode::Tag.new('select', @attributes.except(:value)) { "\n#{option_tags.join("\n")}\n" }
-        select_tag.to_s
+        select_tag.build
       end
     end
   end
